@@ -2,7 +2,6 @@
 
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 const chains = [
   {
@@ -59,3 +58,4 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
     </div>
   );
 }
+</create_file>
