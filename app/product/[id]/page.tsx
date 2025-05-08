@@ -36,14 +36,13 @@ const chains = [
   },
 ];
 
-// Correct typing for Next.js dynamic page props
-interface PageProps {
+interface ProductPageProps {
   params: {
     id: string; // `id` comes from the dynamic route
   };
 }
 
-export default function ProductDetail({ params }: PageProps) {
+export default function ProductDetail({ params }: ProductPageProps) {
   // Convert the string `id` to a number (the `id` from the route is a string)
   const id = parseInt(params.id, 10);
 
