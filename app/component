@@ -1,0 +1,15 @@
+import styles from '../styles/Home.module.css';
+import Image from 'next/image';
+
+export default function Hero() {
+  return (
+    <section className={styles.hero}>
+      <div className={styles.content}>
+        <Image src="/logo.png" alt="Mikufu Logo" width={100} height={100} />
+        <h1>Welcome to Mikufu</h1>
+        <p>Revolutionizing your digital experience.</p>
+        <a href="#get-started" className={styles.cta}>Get Started</a>
+      </div>
+    </section>
+  );
+}
