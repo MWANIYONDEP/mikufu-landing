@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 
+// Data for the chains
 const chains = [
   {
     id: 1,
@@ -34,10 +35,21 @@ const chains = [
   },
 ];
 
-export default function ProductDetail({ params }: { params: { id: string } }) {
+// Type for params
+interface ProductDetailProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function ProductDetail({ params }: ProductDetailProps) {
+  // Convert the string id to an integer
   const id = parseInt(params.id, 10);
+
+  // Find the product by ID
   const product = chains.find((chain) => chain.id === id);
 
+  // If the product is not found, return an error message
   if (!product) {
     return <div>Product not found</div>;
   }
@@ -45,7 +57,14 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
   return (
     <div className="max-w-4xl mx-auto p-6">
       <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-      <Image src={product.image} alt={product.name} width={400} height={400} className="rounded-md mb-4" />
+      {/* Ensure the Image component is used correctly with Next.js */}
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={400}
+        height={400}
+        className="rounded-md mb-4"
+      />
       <p className="mb-4">{product.description}</p>
       <div className="bg-gray-100 p-4 rounded-md text-lg font-semibold">
         Price: TZS {product.price.toLocaleString()}
@@ -58,4 +77,3 @@ export default function ProductDetail({ params }: { params: { id: string } }) {
     </div>
   );
 }
-</create_file>
