@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+// Data for the chains
 const chains = [
   {
     id: 1,
@@ -35,31 +36,47 @@ const chains = [
   },
 ];
 
-interface ProductDetailProps {
+// Correct typing for Next.js dynamic page props
+interface PageProps {
   params: {
-    id: string;
+    id: string; // `id` comes from the dynamic route
   };
 }
 
-export default function ProductDetail({ params }: ProductDetailProps) {
+export default function ProductDetail({ params }: PageProps) {
+  // Convert the string `id` to a number (the `id` from the route is a string)
   const id = parseInt(params.id, 10);
+
+  // Find the product based on the `id`
   const product = chains.find((chain) => chain.id === id);
 
+  // If no product is found, show a message
   if (!product) {
     return <div>Product not found</div>;
   }
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      {/* Link back to home page */}
       <Link href="/" className="text-blue-600 hover:underline mb-4 inline-block">
         &larr; Back to Home Page
       </Link>
+      
+      {/* Product details */}
       <h1 className="text-3xl font-bold mb-4">{product.name}</h1>
-      <Image src={product.image} alt={product.name} width={400} height={400} className="rounded-md mb-4" />
+      <Image
+        src={product.image}
+        alt={product.name}
+        width={400}
+        height={400}
+        className="rounded-md mb-4"
+      />
       <p className="mb-4">{product.description}</p>
       <div className="bg-gray-100 p-4 rounded-md text-lg font-semibold">
         Price: TZS {product.price.toLocaleString()}
       </div>
+
+      {/* Contact Information */}
       <div className="mt-6 p-4 border-t border-gray-300">
         <h2 className="text-xl font-semibold mb-2">Contact Information</h2>
         <p>Phone: 0788427479</p>
