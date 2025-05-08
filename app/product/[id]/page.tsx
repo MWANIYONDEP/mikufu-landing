@@ -34,12 +34,8 @@ const chains = [
 ];
 
 
-interface Params {
-  id: string;
-}
-
-// Must be async in app dir if using route params
-export default async function ProductPage({ params }: { params: Params }) {
+// @ts-expect-error TS is not able to infer the correct type for params here due to Next.js generated types
+export default async function ProductPage({ params }) {
   const id = parseInt(params.id, 10);
   const product = chains.find((chain) => chain.id === id);
 
